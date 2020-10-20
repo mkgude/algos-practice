@@ -14,17 +14,43 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {
-  // n is equal to number of rows
-  // iterate through row
-  for (let row = 0; row < n; row++) {
-    // create an empty string
-    let stair = "";
-    for (let column = 0; column < n; column++) {
-      // iterate through column
-      //  if
-    }
+function pyramid(n, row = 0, level = "") {
+  if (n === row) {
+    return;
   }
+  if (level.length === n * 2 - 1) {
+    console.log(level);
+    return pyramid(n, row + 1);
+  }
+  const midpoint = Math.floor((2 * n - 1) / 2);
+  let add;
+  if (midpoint - row <= level.length && midpoint + row >= level.length) {
+    add = "#";
+  } else {
+    add = " ";
+  }
+  pyramid(n, row, level + add);
 }
 
 module.exports = pyramid;
+
+// SOLUTION 1
+// function pyramid(n) {
+//   // n is equal to number of rows
+//   // find midpoint
+//   const midpoint = Math.floor((2 * n - 1) / 2);
+//   // iterate through row
+//   for (let row = 0; row < n; row++) {
+//     // create an empty string
+//     let level = "";
+//     for (let column = 0; column < n * 2 - 1; column++) {
+//       // iterate through column
+//       if (midpoint - row <= column && midpoint + row >= column) {
+//         level += "#";
+//       } else {
+//         level += " ";
+//       }
+//     }
+//     console.log(level);
+//   }
+// }
